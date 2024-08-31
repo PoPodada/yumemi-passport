@@ -1,3 +1,9 @@
+import FetchPrefectures from '@/_components/FetchPrefectures'
+
 export default function Home() {
-  return <main></main>
+  return (
+    <main>
+      <FetchPrefectures />
+    </main>
+  )
 }
