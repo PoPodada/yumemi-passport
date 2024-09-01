@@ -5,8 +5,21 @@ import PrefecturesCheckbox from '@/_components/PrefecturesCheckbox'
 import { Prefecture } from '@/_types/prefecture'
 import { useEffect, useState } from 'react'
 
-const FetchPrefectures = () => {
-  const [prefectures, setPrefectures] = useState<Prefecture[]>([])
+type FetchPrefecturesProps = {
+  prefectures: Prefecture[]
+  setPrefectures: (prefectures: Prefecture[]) => void
+  checkedPrefectures: number[]
+  setCheckedPrefectures: React.Dispatch<React.SetStateAction<number[]>>
+}
+
+const FetchPrefectures = (props: FetchPrefecturesProps) => {
+  const {
+    prefectures,
+    setPrefectures,
+    checkedPrefectures,
+    setCheckedPrefectures,
+  } = props
+
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -36,7 +49,13 @@ const FetchPrefectures = () => {
       </div>
     )
 
-  return <PrefecturesCheckbox prefectures={prefectures} />
+  return (
+    <PrefecturesCheckbox
+      prefectures={prefectures}
+      checkedPrefectures={checkedPrefectures}
+      setCheckedPrefectures={setCheckedPrefectures}
+    />
+  )
 }
 
 export default FetchPrefectures
