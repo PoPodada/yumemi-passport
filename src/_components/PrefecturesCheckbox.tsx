@@ -1,18 +1,18 @@
 'use client'
 
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent } from 'react'
 import { Prefecture } from '@/_types/prefecture'
 
 type PrefecturesCheckboxProps = {
   prefectures: Prefecture[]
+  checkedPrefectures: number[]
+  setCheckedPrefectures: React.Dispatch<React.SetStateAction<number[]>>
 }
 
 const PrefecturesCheckbox = (props: PrefecturesCheckboxProps) => {
-  const { prefectures } = props
+  const { prefectures, checkedPrefectures, setCheckedPrefectures } = props
 
-  const [checkedPrefectures, setCheckedPrefectures] = useState<number[]>([])
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
     const prefCode = parseInt(e.target.id)
     setCheckedPrefectures((prev) => {
       return e.target.checked
@@ -28,7 +28,7 @@ const PrefecturesCheckbox = (props: PrefecturesCheckboxProps) => {
             <input
               type="checkbox"
               id={`${prefecture.prefCode}`}
-              onChange={handleChange}
+              onChange={handleChangeCheckbox}
               checked={checkedPrefectures.includes(prefecture.prefCode)}
             />
             <label htmlFor={`${prefecture.prefCode}`}>
