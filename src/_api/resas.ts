@@ -1,3 +1,5 @@
+'use server'
+
 import { Prefecture } from '@/_types/prefecture'
 import { handleFailed, handleSuceed, path, headers } from './index'
 
