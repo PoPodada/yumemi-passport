@@ -8,8 +8,8 @@ import { useEffect, useState } from 'react'
 type FetchPrefecturesProps = {
   prefectures: Prefecture[]
   setPrefectures: (prefectures: Prefecture[]) => void
-  checkedPrefectures: number[]
-  setCheckedPrefectures: React.Dispatch<React.SetStateAction<number[]>>
+  checkedPrefectures: Prefecture[]
+  setCheckedPrefectures: React.Dispatch<React.SetStateAction<Prefecture[]>>
 }
 
 const FetchPrefectures = (props: FetchPrefecturesProps) => {

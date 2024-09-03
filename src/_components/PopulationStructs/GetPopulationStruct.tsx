@@ -3,10 +3,11 @@
 import { getPopulationStruct } from '@/_api/resas'
 import PopulationStructsGraph from '@/_components/PopulationStructs/PopulationStructsGraph'
 import { populationStruct } from '@/_types/populationStructs'
+import { Prefecture } from '@/_types/prefecture'
 import React, { useEffect, useState } from 'react'
 
 type GetPopulationStructProps = {
-  checkedPrefectures: number[]
+  checkedPrefectures: Prefecture[]
   populationStructs: populationStruct[]
   setPopulationStructs: (populationStructs: populationStruct[]) => void
 }
@@ -22,8 +23,10 @@ const GetPopulationStruct = (props: GetPopulationStructProps) => {
     ;(async () => {
       try {
         const data = await Promise.all(
-          checkedPrefectures.map(async (prefCode) => {
-            const response = await getPopulationStruct(prefCode)
+          checkedPrefectures.map(async (checkedPrefecture) => {
+            const response = await getPopulationStruct(
+              checkedPrefecture.prefCode
+            )
             return response
           })
         )

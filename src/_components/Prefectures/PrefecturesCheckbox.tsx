@@ -5,8 +5,8 @@ import { Prefecture } from '@/_types/prefecture'
 
 type PrefecturesCheckboxProps = {
   prefectures: Prefecture[]
-  checkedPrefectures: number[]
-  setCheckedPrefectures: React.Dispatch<React.SetStateAction<number[]>>
+  checkedPrefectures: Prefecture[]
+  setCheckedPrefectures: React.Dispatch<React.SetStateAction<Prefecture[]>>
 }
 
 const PrefecturesCheckbox = (props: PrefecturesCheckboxProps) => {
@@ -16,8 +16,14 @@ const PrefecturesCheckbox = (props: PrefecturesCheckboxProps) => {
     const prefCode = parseInt(e.target.id)
     setCheckedPrefectures((prev) => {
       return e.target.checked
-        ? [...prev, prefCode]
-        : prev.filter((code) => code !== prefCode)
+        ? [
+            ...prev,
+            {
+              prefCode: prefCode,
+              prefName: prefectures[prefCode - 1].prefName,
+            },
+          ]
+        : prev.filter((prefecture) => prefecture.prefCode !== prefCode)
     })
   }
   return (
@@ -29,7 +35,10 @@ const PrefecturesCheckbox = (props: PrefecturesCheckboxProps) => {
               type="checkbox"
               id={`${prefecture.prefCode}`}
               onChange={handleChangeCheckbox}
-              checked={checkedPrefectures.includes(prefecture.prefCode)}
+              checked={checkedPrefectures.some(
+                (checkedPrefecture) =>
+                  checkedPrefecture.prefCode === prefecture.prefCode
+              )}
             />
             <label htmlFor={`${prefecture.prefCode}`}>
               {prefecture.prefName}

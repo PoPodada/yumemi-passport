@@ -8,12 +8,11 @@ import React, { useState } from 'react'
 
 const SearchPopulationStruct = () => {
   const [prefectures, setPrefectures] = useState<Prefecture[]>([])
-  const [checkedPrefectures, setCheckedPrefectures] = useState<number[]>([])
+  const [checkedPrefectures, setCheckedPrefectures] = useState<Prefecture[]>([])
   const [populationStructs, setPopulationStructs] = useState<
     populationStruct[]
   >([])
 
-  console.log('prefectures', prefectures)
   return (
     <>
       <FetchPrefectures
