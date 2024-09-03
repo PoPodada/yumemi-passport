@@ -1,7 +1,7 @@
 'use client'
 
-import FetchPrefectures from '@/_components/FetchPrefectures'
-import GetPopulationStruct from '@/_components/GetPopulationStruct'
+import FetchPrefectures from '@/_components/Prefectures/FetchPrefectures'
+import GetPopulationStruct from '@/_components/PopulationStructs/GetPopulationStruct'
 import { populationStruct } from '@/_types/populationStructs'
 import { Prefecture } from '@/_types/prefecture'
 import React, { useState } from 'react'
@@ -13,6 +13,7 @@ const SearchPopulationStruct = () => {
     populationStruct[]
   >([])
 
+  console.log('prefectures', prefectures)
   return (
     <>
       <FetchPrefectures
