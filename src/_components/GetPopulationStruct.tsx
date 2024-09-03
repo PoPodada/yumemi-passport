@@ -1,6 +1,7 @@
 'use client'
 
 import { getPopulationStruct } from '@/_api/resas'
+import PopulationStructsGraph from '@/_components/PopulationStructsGraph'
 import { populationStruct } from '@/_types/populationStructs'
 import React, { useEffect, useState } from 'react'
 
@@ -34,6 +35,7 @@ const GetPopulationStruct = (props: GetPopulationStructProps) => {
       }
     })()
   }, [checkedPrefectures])
+
   if (populationStructs.length === 0)
     return (
       <div className="h-[100px] flex justify-center items-center">
@@ -52,7 +54,11 @@ const GetPopulationStruct = (props: GetPopulationStructProps) => {
         人口構成の取得に失敗しました
       </div>
     )
-  return <></>
+  return (
+    <>
+      <PopulationStructsGraph populationStructs={populationStructs} />
+    </>
+  )
 }
 
 export default GetPopulationStruct
