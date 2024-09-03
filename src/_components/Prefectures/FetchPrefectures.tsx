@@ -1,7 +1,7 @@
 'use client'
 
 import { getPrefectures } from '@/_api/resas'
-import PrefecturesCheckbox from '@/_components/PrefecturesCheckbox'
+import PrefecturesCheckbox from '@/_components/Prefectures/PrefecturesCheckbox'
 import { Prefecture } from '@/_types/prefecture'
 import { useEffect, useState } from 'react'
 

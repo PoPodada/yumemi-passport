@@ -1,7 +1,7 @@
 'use client'
 
 import { getPopulationStruct } from '@/_api/resas'
-import PopulationStructsGraph from '@/_components/PopulationStructsGraph'
+import PopulationStructsGraph from '@/_components/PopulationStructs/PopulationStructsGraph'
 import { populationStruct } from '@/_types/populationStructs'
 import React, { useEffect, useState } from 'react'
 
