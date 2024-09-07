@@ -1,4 +1,7 @@
-import { populationStruct } from '@/_types/populationStructs'
+import {
+  PopulationStruct,
+  PopulationStructsIndex,
+} from '@/_types/populationStructs'
 import { Prefecture } from '@/_types/prefecture'
 import { createGraphData } from '@/_utils/graph'
 import React, { useEffect, useState } from 'react'
@@ -14,11 +17,13 @@ import {
 
 type PopulationStructsGraphProps = {
   checkedPrefectures: Prefecture[]
-  populationStructs: populationStruct[]
+  populationStructs: PopulationStruct[]
+  populationStructsIndex: PopulationStructsIndex
 }
 
 const PopulationStructsGraph = (props: PopulationStructsGraphProps) => {
-  const { checkedPrefectures, populationStructs } = props
+  const { checkedPrefectures, populationStructs, populationStructsIndex } =
+    props
   const years = [
     '1960',
     '1965',
@@ -39,11 +44,14 @@ const PopulationStructsGraph = (props: PopulationStructsGraphProps) => {
     '2040',
     '2045',
   ]
-  const [populationStructsIndex, setPopulationStructsIndex] = useState<
-    0 | 1 | 2 | 3
-  >(0)
-  const [graphData, setGraphData] = useState<YearPopulationData[]>([])
 
+  const [graphData, setGraphData] = useState<YearPopulationData[]>([])
+  const structs = {
+    0: '総人口',
+    1: '年少人口',
+    2: '生産年齢人口',
+    3: '老年人口',
+  }
   useEffect(() => {
     if (
       checkedPrefectures.length === 0 ||
@@ -63,8 +71,11 @@ const PopulationStructsGraph = (props: PopulationStructsGraphProps) => {
   }, [populationStructs, checkedPrefectures, populationStructsIndex])
 
   return (
-    <>
-      <div className="flex items-center justify-center my-14">
+    <div className="my-20">
+      <p className="max-w-[700px] mx-auto text-xl font-bold">
+        {structs[populationStructsIndex]}
+      </p>
+      <div className="flex items-center justify-center">
         <LineChart
           width={700}
           height={500}
@@ -92,7 +103,7 @@ const PopulationStructsGraph = (props: PopulationStructsGraphProps) => {
           ))}
         </LineChart>
       </div>
-    </>
+    </div>
   )
 }
 

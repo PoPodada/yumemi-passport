@@ -1,23 +1,25 @@
 import { Prefecture } from '@/_types/prefecture'
 
-type yearData = {
+type YearData = {
   year: number
   value: number
 }
 
-type yearsDatas = {
-  label: yearsDatasLabel
-  data: yearData[]
+type YearsDatas = {
+  label: YearsDatasLabel
+  data: YearData[]
 }
 
-export type yearsDatasLabel =
+export type YearsDatasLabel =
   | '総人口'
   | '年少人口'
   | '生産年齢人口'
   | '老年人口'
 
-export type populationStruct = {
+export type PopulationStruct = {
   boundaryYear: number
-  data: yearsDatas[]
+  data: YearsDatas[]
   prefecture?: Prefecture
 }
+
+export type PopulationStructsIndex = 0 | 1 | 2 | 3

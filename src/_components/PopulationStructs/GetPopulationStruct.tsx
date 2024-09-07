@@ -2,18 +2,23 @@
 
 import { getPopulationStruct } from '@/_api/resas'
 import PopulationStructsGraph from '@/_components/PopulationStructs/PopulationStructsGraph'
-import { populationStruct } from '@/_types/populationStructs'
+import {
+  PopulationStruct,
+  PopulationStructsIndex,
+} from '@/_types/populationStructs'
 import { Prefecture } from '@/_types/prefecture'
 import React, { useEffect, useState } from 'react'
 
 type GetPopulationStructProps = {
   checkedPrefectures: Prefecture[]
-  populationStructs: populationStruct[]
-  setPopulationStructs: (populationStructs: populationStruct[]) => void
+  populationStructs: PopulationStruct[]
+  setPopulationStructs: (populationStructs: PopulationStruct[]) => void
 }
 
 const GetPopulationStruct = (props: GetPopulationStructProps) => {
   const { checkedPrefectures, populationStructs, setPopulationStructs } = props
+  const [populationStructsIndex, setPopulationStructsIndex] =
+    useState<PopulationStructsIndex>(0)
 
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
@@ -62,7 +67,34 @@ const GetPopulationStruct = (props: GetPopulationStructProps) => {
       <PopulationStructsGraph
         checkedPrefectures={checkedPrefectures}
         populationStructs={populationStructs}
+        populationStructsIndex={populationStructsIndex}
       />
+      <div className="flex justify-between pb-4 max-w-[400px] mx-auto">
+        <button
+          onClick={() => setPopulationStructsIndex(0)}
+          className="bg-blue-500 border border-1 border-black rounded-md p-2 text-white"
+        >
+          総人口
+        </button>
+        <button
+          onClick={() => setPopulationStructsIndex(1)}
+          className="bg-blue-500 border border-1 border-black rounded-md p-2 text-white"
+        >
+          年少人口
+        </button>
+        <button
+          onClick={() => setPopulationStructsIndex(2)}
+          className="bg-blue-500 border border-1 border-black rounded-md p-2 text-white"
+        >
+          生産年齢人口
+        </button>
+        <button
+          onClick={() => setPopulationStructsIndex(3)}
+          className="bg-blue-500 border border-1 border-black rounded-md p-2 text-white"
+        >
+          老年人口
+        </button>
+      </div>
     </>
   )
 }

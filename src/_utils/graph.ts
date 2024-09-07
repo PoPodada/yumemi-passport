@@ -1,8 +1,8 @@
-import { populationStruct } from '@/_types/populationStructs'
+import { PopulationStruct } from '@/_types/populationStructs'
 
 export const createGraphData = (
   years: string[],
-  populationStructs: populationStruct[],
+  populationStructs: PopulationStruct[],
   populationStructsIndex: 0 | 1 | 2 | 3
 ) => {
   return years.map((year, i) => {
