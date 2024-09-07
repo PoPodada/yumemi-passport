@@ -1,19 +1,11 @@
-import {
-  PopulationStruct,
-  PopulationStructsIndex,
-} from '@/_types/populationStructs'
-import { Prefecture } from '@/_types/prefecture'
-import { createGraphData } from '@/_utils/graph'
 import React, { useEffect, useState } from 'react'
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  XAxis,
-  YAxis,
-} from 'recharts'
+import { LineChart, Line, CartesianGrid, Tooltip, Legend, XAxis, YAxis } from 'recharts'
+
+import { createGraphData } from '@/_utils/graph'
+
+import { YearPopulationData } from '@/_types/graph'
+import { PopulationStruct, PopulationStructsIndex } from '@/_types/populationStructs'
+import { Prefecture } from '@/_types/prefecture'
 
 type PopulationStructsGraphProps = {
   checkedPrefectures: Prefecture[]
@@ -22,8 +14,7 @@ type PopulationStructsGraphProps = {
 }
 
 const PopulationStructsGraph = (props: PopulationStructsGraphProps) => {
-  const { checkedPrefectures, populationStructs, populationStructsIndex } =
-    props
+  const { checkedPrefectures, populationStructs, populationStructsIndex } = props
   const years = [
     '1960',
     '1965',
@@ -62,20 +53,16 @@ const PopulationStructsGraph = (props: PopulationStructsGraphProps) => {
     checkedPrefectures.forEach((checkedPrefecture, i) => {
       populationStructs[i]['prefecture'] = checkedPrefecture
     })
-    const graphData = createGraphData(
-      years,
-      populationStructs,
-      populationStructsIndex
-    )
+    const graphData = createGraphData(years, populationStructs, populationStructsIndex)
     setGraphData(graphData)
   }, [populationStructs, checkedPrefectures, populationStructsIndex])
 
   return (
-    <div className="my-20">
-      <p className="max-w-[700px] mx-auto text-xl font-bold">
+    <div className='my-20'>
+      <p className='mx-auto max-w-[700px] text-xl font-bold'>
         {structs[populationStructsIndex]}
       </p>
-      <div className="flex items-center justify-center">
+      <div className='flex items-center justify-center'>
         <LineChart
           width={700}
           height={500}
@@ -87,14 +74,14 @@ const PopulationStructsGraph = (props: PopulationStructsGraphProps) => {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='name' />
           <YAxis />
           <Tooltip />
           <Legend />
           {checkedPrefectures.map((checkedPrefecture) => (
             <Line
-              type="monotone"
+              type='monotone'
               dataKey={checkedPrefecture.prefName}
               stroke={checkedPrefecture.lineColor}
               activeDot={{ r: 8 }}

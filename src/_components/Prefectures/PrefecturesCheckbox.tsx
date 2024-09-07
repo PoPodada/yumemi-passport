@@ -1,8 +1,10 @@
 'use client'
 
 import React, { ChangeEvent } from 'react'
-import { Prefecture } from '@/_types/prefecture'
+
 import { getRandomColor } from '@/_utils/createColor'
+
+import { Prefecture } from '@/_types/prefecture'
 
 type PrefecturesCheckboxProps = {
   prefectures: Prefecture[]
@@ -31,21 +33,18 @@ const PrefecturesCheckbox = (props: PrefecturesCheckboxProps) => {
   }
   return (
     <>
-      <div className="flex flex-wrap text-lg">
+      <div className='flex flex-wrap text-lg'>
         {prefectures.map((prefecture) => (
-          <div key={prefecture.prefCode} className="w-[100px] py-2">
+          <div key={prefecture.prefCode} className='w-[100px] py-2'>
             <input
-              type="checkbox"
+              type='checkbox'
               id={`${prefecture.prefCode}`}
               onChange={handleChangeCheckbox}
               checked={checkedPrefectures.some(
-                (checkedPrefecture) =>
-                  checkedPrefecture.prefCode === prefecture.prefCode
+                (checkedPrefecture) => checkedPrefecture.prefCode === prefecture.prefCode,
               )}
             />
-            <label htmlFor={`${prefecture.prefCode}`}>
-              {prefecture.prefName}
-            </label>
+            <label htmlFor={`${prefecture.prefCode}`}>{prefecture.prefName}</label>
           </div>
         ))}
       </div>

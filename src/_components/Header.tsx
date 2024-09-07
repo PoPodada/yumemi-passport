@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <header className="h-[100px] flex items-center px-[4%] bg-blue-400 font-bold text-2xl">
+    <header className='flex h-[100px] items-center bg-blue-400 px-[4%] text-2xl font-bold'>
       都道府県別の総人口推移
     </header>
   )

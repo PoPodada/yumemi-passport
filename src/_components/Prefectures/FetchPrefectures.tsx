@@ -1,9 +1,12 @@
 'use client'
 
-import { getPrefectures } from '@/_api/resas'
-import PrefecturesCheckbox from '@/_components/Prefectures/PrefecturesCheckbox'
-import { Prefecture } from '@/_types/prefecture'
 import { useEffect, useState } from 'react'
+
+import PrefecturesCheckbox from '@/_components/Prefectures/PrefecturesCheckbox'
+
+import { Prefecture } from '@/_types/prefecture'
+
+import { getPrefectures } from '@/_api/resas'
 
 type FetchPrefecturesProps = {
   prefectures: Prefecture[]
@@ -13,12 +16,7 @@ type FetchPrefecturesProps = {
 }
 
 const FetchPrefectures = (props: FetchPrefecturesProps) => {
-  const {
-    prefectures,
-    setPrefectures,
-    checkedPrefectures,
-    setCheckedPrefectures,
-  } = props
+  const { prefectures, setPrefectures, checkedPrefectures, setCheckedPrefectures } = props
 
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
@@ -29,6 +27,7 @@ const FetchPrefectures = (props: FetchPrefecturesProps) => {
         const data = await getPrefectures()
         setPrefectures(data)
       } catch (error) {
+        console.error(error)
         setError('Failed to fetch data')
       } finally {
         setLoading(false)
@@ -37,14 +36,10 @@ const FetchPrefectures = (props: FetchPrefecturesProps) => {
   }, [])
 
   if (loading)
-    return (
-      <div className="h-[100px] flex justify-center items-center">
-        Loading...
-      </div>
-    )
+    return <div className='flex h-[100px] items-center justify-center'>Loading...</div>
   if (error)
     return (
-      <div className="h-[100px] flex justify-center items-center">
+      <div className='flex h-[100px] items-center justify-center'>
         都道府県一覧の取得に失敗しました
       </div>
     )
