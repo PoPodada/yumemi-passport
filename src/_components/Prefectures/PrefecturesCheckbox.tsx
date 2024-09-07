@@ -2,6 +2,7 @@
 
 import React, { ChangeEvent } from 'react'
 import { Prefecture } from '@/_types/prefecture'
+import { getRandomColor } from '@/_utils/createColor'
 
 type PrefecturesCheckboxProps = {
   prefectures: Prefecture[]
@@ -14,6 +15,7 @@ const PrefecturesCheckbox = (props: PrefecturesCheckboxProps) => {
 
   const handleChangeCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
     const prefCode = parseInt(e.target.id)
+    const lineColor = getRandomColor()
     setCheckedPrefectures((prev) => {
       return e.target.checked
         ? [
@@ -21,6 +23,7 @@ const PrefecturesCheckbox = (props: PrefecturesCheckboxProps) => {
             {
               prefCode: prefCode,
               prefName: prefectures[prefCode - 1].prefName,
+              lineColor: lineColor,
             },
           ]
         : prev.filter((prefecture) => prefecture.prefCode !== prefCode)
