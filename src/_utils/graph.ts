@@ -1,9 +1,10 @@
+import { YearPopulationData } from '@/_types/graph'
 import { PopulationStruct } from '@/_types/populationStructs'
 
 export const createGraphData = (
   years: string[],
   populationStructs: PopulationStruct[],
-  populationStructsIndex: 0 | 1 | 2 | 3
+  populationStructsIndex: 0 | 1 | 2 | 3,
 ) => {
   return years.map((year, i) => {
     const data: YearPopulationData = { name: year }

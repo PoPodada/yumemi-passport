@@ -1,17 +1,17 @@
 'use client'
 
-import FetchPrefectures from '@/_components/Prefectures/FetchPrefectures'
+import React, { useState } from 'react'
+
 import GetPopulationStruct from '@/_components/PopulationStructs/GetPopulationStruct'
+import FetchPrefectures from '@/_components/Prefectures/FetchPrefectures'
+
 import { PopulationStruct } from '@/_types/populationStructs'
 import { Prefecture } from '@/_types/prefecture'
-import React, { useState } from 'react'
 
 const SearchPopulationStruct = () => {
   const [prefectures, setPrefectures] = useState<Prefecture[]>([])
   const [checkedPrefectures, setCheckedPrefectures] = useState<Prefecture[]>([])
-  const [populationStructs, setPopulationStructs] = useState<
-    PopulationStruct[]
-  >([])
+  const [populationStructs, setPopulationStructs] = useState<PopulationStruct[]>([])
 
   return (
     <>

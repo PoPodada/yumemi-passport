@@ -26,8 +26,10 @@ export const isFetchError = (error: unknown) => {
 
 export const handleSuceed = async (response: Response) => {
   if (response.status === 204) return ''
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const data = await response.json()
   if (!response.ok) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     throw new FetchError(response.statusText, response.status, data.message)
   }
   return data.result

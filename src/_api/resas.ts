@@ -1,8 +1,9 @@
 'use server'
 
-import { Prefecture } from '@/_types/prefecture'
-import { handleFailed, handleSuceed, path, headers } from './index'
 import { PopulationStruct } from '@/_types/populationStructs'
+import { Prefecture } from '@/_types/prefecture'
+
+import { handleFailed, handleSuceed, path, headers } from './index'
 
 export const getPrefectures = async (): Promise<Prefecture[]> => {
   try {
@@ -17,7 +18,7 @@ export const getPrefectures = async (): Promise<Prefecture[]> => {
 }
 
 export const getPopulationStruct = async (
-  prefCode: number
+  prefCode: number,
 ): Promise<PopulationStruct> => {
   try {
     const params = `?cityCode=-&prefCode=${prefCode}`
@@ -26,7 +27,7 @@ export const getPopulationStruct = async (
       {
         method: 'GET',
         headers: headers,
-      }
+      },
     )
     return handleSuceed(response)
   } catch (error) {
