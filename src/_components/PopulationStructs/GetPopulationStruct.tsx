@@ -59,7 +59,10 @@ const GetPopulationStruct = (props: GetPopulationStructProps) => {
     )
   return (
     <>
-      <PopulationStructsGraph populationStructs={populationStructs} />
+      <PopulationStructsGraph
+        checkedPrefectures={checkedPrefectures}
+        populationStructs={populationStructs}
+      />
     </>
   )
 }

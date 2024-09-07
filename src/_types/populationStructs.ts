@@ -1,3 +1,5 @@
+import { Prefecture } from '@/_types/prefecture'
+
 type yearData = {
   year: number
   value: number
@@ -17,4 +19,5 @@ export type yearsDatasLabel =
 export type populationStruct = {
   boundaryYear: number
   data: yearsDatas[]
+  prefecture?: Prefecture
 }
